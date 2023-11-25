@@ -1,0 +1,20 @@
+
+@media (min-width: 1024px) {
+    .lg\:w-11\/12 {
+        width: 100%;
+
+
+        
+    }
+    
+    .navbar-end {
+        width: 50%;
+        justify-content: space-around;
+    }
+}
+
+@media (min-width: 768px) {
+    .md\:fixed {
+        position: fixed;
+    }
+}
