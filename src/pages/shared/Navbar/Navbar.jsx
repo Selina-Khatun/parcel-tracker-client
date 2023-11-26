@@ -6,6 +6,8 @@ const Navbar = () => {
     const navLinks=<>
      <li><NavLink className='mr-5 font-bold uppercase' to={'/'}>Home</NavLink></li>
      <li><NavLink className='mr-5 font-bold uppercase' to={'/dashboard'}>Dashboard</NavLink></li>
+     <li><NavLink className='mr-5 font-bold uppercase' to={'/register'}>register</NavLink></li>
+     <li><NavLink className='mr-5 font-bold uppercase' to={'/login'}>login</NavLink></li>
     
     </>
     return (
@@ -51,7 +53,8 @@ const Navbar = () => {
                             <li>
                             User name
                             </li>
-                            <li><a>Dashboard</a></li>
+                            <li><NavLink className='mr-5 font-bold uppercase' to={'/dashboard'}>Dashboard</NavLink></li>
+    
                             <li><a>Logout</a></li>
                         </ul>
                     </div>
