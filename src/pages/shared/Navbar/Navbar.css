@@ -1,4 +1,9 @@
-
+.navbar ul {
+    list-style: none;
+  }
+  .navbar li {
+    list-style: none;
+  }
 @media (min-width: 1024px) {
     .lg\:w-11\/12 {
         width: 100%;

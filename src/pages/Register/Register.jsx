@@ -1,6 +1,6 @@
 // import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 // import auth from '../../firebase/firebase.config';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import swal from 'sweetalert';
@@ -8,6 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import { FaArrowLeft } from 'react-icons/fa';
 AOS.init({ duration: 1000 });
 
 const Register = () => {
@@ -59,9 +60,9 @@ const Register = () => {
             </Helmet>
 
             <div>
-
+            <NavLink className='mr-5 hover:text-red-500 flex items-center gap-2 ' to={'/'}> <FaArrowLeft /> Back to Home</NavLink>
                 <div data-aos="zoom-in-up" className="hero min-h-screen" >
-                    /                <div className="max-w-3xl mx-auto">
+                            <div className="max-w-3xl mx-auto">
                         <div
                             className="bg-white shadow-md border border-gray-200 rounded-lg md:max-w-3xl max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
                             <form onSubmit={handleRegister} className="space-y-6" >

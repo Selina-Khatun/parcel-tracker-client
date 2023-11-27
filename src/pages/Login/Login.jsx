@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-
+import { FaArrowLeft } from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha, LoadCanvasTemplateNoReload } from 'react-simple-captcha';
 import swal from 'sweetalert';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
@@ -12,19 +12,15 @@ import { Helmet } from 'react-helmet-async';
 AOS.init({ duration: 1000 });
 
 const LogIn = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn,googleSignIn, user} = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState();
+    // const [user, setUser] = useState();
     const [disabled, setDisabled] = useState(true);
     // const [captchaText, setCaptchaText] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-
-
-
-
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || '/dashboard';
     console.log('state in the location login page', location.state)
-
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -45,7 +41,6 @@ const LogIn = () => {
                     navigate(from, { replace: true });
                     // navigate(location?.state ? location.state : '/');
                 }
-
             })
 
             .catch((error) => {
@@ -71,10 +66,12 @@ const LogIn = () => {
         googleSignIn().then(result => {
             const loggedUser = result.user
             console.log(loggedUser);
-            setUser(loggedUser)
-
-            navigate(location?.state ? location.state : '/');
-            swal("Successfully logged in.")
+            // setUser(loggedUser);
+            if (loggedUser) {
+                swal("Successfully logged in.");
+                navigate(from, { replace: true });
+                // navigate(location?.state ? location.state : '/');
+            }
         })
     };
 
@@ -84,6 +81,8 @@ const LogIn = () => {
                 <title>parcel Tracker || login</title>
             </Helmet>
             <div>
+
+            <NavLink className='mr-5 hover:text-red-500 flex items-center gap-2 ' to={'/'}> <FaArrowLeft /> Back to Home</NavLink>
                 <div data-aos="zoom-in-up" className=" w-1/2 mx-auto  rounded-lg">
                     <div className=" ">
                         <div className="card w-full   shadow-2xl bg-base-100">
@@ -112,27 +111,12 @@ const LogIn = () => {
                                             {showPassword ? <AiFillEye></AiFillEye> : <AiFillEyeInvisible></AiFillEyeInvisible>}
                                         </span>
                                     </div>
-
-
-                                </div>
-                                {/* <div className=''>
-                                    <label className="label  ">
-                                        <div > */}
-                                {/* <LoadCanvasTemplate/> */}
-                                {/* <LoadCanvasTemplateNoReload />
-                                        </div>
-                                    </label>
-                                    <input type="text" placeholder="enter the captcha above " name='captcha' className="input input-bordered" required />
-                                    <button onClick={handleValidateCaptcha} className=' px-5 rounded-2xl border btn-outline ml-5'>Validate</button> */}
-                                {/* <button onClick={regenerateCaptcha} className=' px-5 rounded-2xl border btn-outline ml-5'>Regenerate</button> */}
-                                {/* </div> */}
-
+                                </div>                      
                                 <div className="form-control">
                                     <label className="label">
                                         <LoadCanvasTemplate />
                                     </label>
                                     <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="type the captcha above" className="input input-bordered" required />
-
                                 </div>
                                 <div className="form-control mt-6">
                                     {/* TODO: apply disabled for re captcha */}
@@ -141,11 +125,7 @@ const LogIn = () => {
                                 <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                                     Don’t have an account yet? please
                                     <Link to={"/register"}
-                                        className="font-medium text-pink-500 transition-colors hover:text-blue-700"
-
-                                    >
-                                        Register
-                                    </Link>
+                                        className="font-medium text-pink-500 transition-colors hover:text-blue-700"> Register</Link>
                                 </p>
                             </form>
                         </div>

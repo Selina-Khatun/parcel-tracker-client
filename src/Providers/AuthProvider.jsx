@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from '../firebase.config';
 
@@ -58,6 +58,6 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
-// AuthProvider.prototypes = {
-//     children: PropTypes.node
-// }
+AuthProvider.prototypes = {
+    children: PropTypes.node
+}
