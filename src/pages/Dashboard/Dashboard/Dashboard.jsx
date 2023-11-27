@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Banner from '../Home/Banner/Banner';
+import Banner from '../../Home/Banner/Banner';
 
 const Dashboard = () => {
     return (
