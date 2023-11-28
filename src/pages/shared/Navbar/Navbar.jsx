@@ -19,29 +19,29 @@ const Navbar = () => {
     }
     const navLinks = <>
         {/* <li><NavLink className='mr-5 font-bold uppercase' to={'/'}>Home</NavLink></li> */}
-        <li className={`nav-item ${location.pathname === '/' && 'bg-sky-100 rounded-xl mr-5'}`}><Link to={'/'}><button class="relative inline-block  text-lg group w-full my-2">
-            <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
-                <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
-                <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
-                <span class="relative">Home</span>
+        <li className={`nav-item ${location.pathname === '/' && 'bg-sky-100 rounded-xl mr-5'}`}><Link to={'/'}><button className="relative inline-block  text-lg group w-full my-2">
+            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
+                <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
+                <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
+                <span className="relative">Home</span>
             </span>
-            <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+            <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
         </button></Link></li>
-        <li className={`nav-item ${location.pathname === '/dashboard' && 'bg-sky-100 rounded-xl mr-5'}`}><Link to={'/dashboard'}><button class="relative  text-lg group w-full my-2">
-            <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
-                <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
-                <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
-                <span class="relative">Dashboard</span>
+        <li className={`nav-item ${location.pathname === '/dashboard' && 'bg-sky-100 rounded-xl mr-5'}`}><Link to={'/dashboard'}><button className="relative  text-lg group w-full my-2">
+            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
+                <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
+                <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
+                <span className="relative">Dashboard</span>
             </span>
-            <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+            <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
         </button></Link></li>
-        <li className={`nav-item ${location.pathname === '/register' && 'bg-sky-100 rounded-xl mr-5'}`}><Link to={'/register'}><button class="relative inline-block text-lg group w-full my-2">
-            <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
-                <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
-                <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
-                <span class="relative">Register</span>
+        <li className={`nav-item ${location.pathname === '/register' && 'bg-sky-100 rounded-xl mr-5'}`}><Link to={'/register'}><button className="relative inline-block text-lg group w-full my-2">
+            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
+                <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
+                <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
+                <span className="relative">Register</span>
             </span>
-            <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+            <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
         </button></Link></li>
     </>
     return (
@@ -96,20 +96,20 @@ const Navbar = () => {
                                         <p className=' text-rose-600 lg:font-bold'>{user?.displayName} </p>
                                     </li>
 
-                                    <NavLink to={'/dashboard'}><button class="relative inline-block text-lg group w-full my-2">
-                                        <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
-                                            <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
-                                            <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
-                                            <span class="relative">Dashboard</span>
+                                    <NavLink to={'/dashboard'}><button className="relative inline-block text-lg group w-full my-2">
+                                        <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-sky-500 rounded-lg group-hover:text-white">
+                                            <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-sky-50"></span>
+                                            <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-sky-500 group-hover:-rotate-180 ease"></span>
+                                            <span className="relative">Dashboard</span>
                                         </span>
-                                        <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+                                        <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-sky-600 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
                                     </button></NavLink>
-                                    <button onClick={handleLogout} class="relative inline-flex items-center uppercase  justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-sky-500 rounded-xl group">
-                                        <span class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-sky-700 rounded group-hover:-mr-4 group-hover:-mt-4">
-                                            <span class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
+                                    <button onClick={handleLogout} className="relative inline-flex items-center uppercase  justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-sky-500 rounded-xl group">
+                                        <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-sky-700 rounded group-hover:-mr-4 group-hover:-mt-4">
+                                            <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
                                         </span>
-                                        <span class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-sky-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
-                                        <span class="relative w-full text-white transition-colors duration-200 ease-in-out group-hover:text-white text-center">log out</span>
+                                        <span className="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-sky-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
+                                        <span className="relative w-full text-white transition-colors duration-200 ease-in-out group-hover:text-white text-center">log out</span>
                                     </button>
                                 </ul>
                             </div>
