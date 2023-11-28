@@ -14,7 +14,7 @@ const TopDelivery = () => {
         <div>
             <div>
                 <h2 className='text-3xl font-bold text-center py-5 my-5'>Top Delivery Men</h2>
-                <div className="grid lg:grid-cols-5 grid-cols-1 md:grid-cols-3 gap-10 my-5">
+                <div className="grid lg:grid-cols-5 grid-cols-1 md:grid-cols-3 gap-3 my-5">
                     {sortedReview.map(deliveryMan => (
 
                         <div key={deliveryMan._id} className="card  bg-base-100  shadow-xl">
