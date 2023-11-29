@@ -9,14 +9,17 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 AOS.init({ duration: 1000 });
 
 const LogIn = () => {
-    const { signIn,googleSignIn, user} = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
+    const { signIn, googleSignIn, user } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState();
     // const [user, setUser] = useState();
     const [disabled, setDisabled] = useState(true);
     // const [captchaText, setCaptchaText] = useState('');
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/dashboard';
@@ -53,7 +56,7 @@ const LogIn = () => {
 
     const handleValidateCaptcha = (e) => {
         const user_captcha_value = e.target.value;
-        if (validateCaptcha(user_captcha_value)==true) {
+        if (validateCaptcha(user_captcha_value) == true) {
             setDisabled(false);
             swal('Captcha Matched');
         }
@@ -63,16 +66,32 @@ const LogIn = () => {
         }
     }
     const handleGoogle = () => {
-        googleSignIn().then(result => {
-            const loggedUser = result.user
-            console.log(loggedUser);
-            // setUser(loggedUser);
-            if (loggedUser) {
-                swal("Successfully logged in.");
-                navigate(from, { replace: true });
-                // navigate(location?.state ? location.state : '/');
-            }
-        })
+        googleSignIn()
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser);
+                // setUser(loggedUser);
+                const userInfo = {
+                    email: loggedUser?.email,
+                    name: loggedUser?.displayName,
+                    photo:loggedUser?.photoURL
+                }
+                axiosPublic.post('/users', userInfo)
+
+                    .then(res => {
+
+                        console.log(res.data)
+
+                        if (loggedUser) {
+                            swal("Successfully logged in.");
+                            navigate(from, { replace: true });
+                            // navigate(location?.state ? location.state : '/');
+                        }
+
+                    })
+
+
+            })
     };
 
     return (
@@ -82,7 +101,7 @@ const LogIn = () => {
             </Helmet>
             <div>
 
-            <NavLink className='mr-5 hover:text-red-500 flex items-center gap-2 ' to={'/'}> <FaArrowLeft /> Back to Home</NavLink>
+                <NavLink className='mr-5 hover:text-red-500 flex items-center gap-2 ' to={'/'}> <FaArrowLeft /> Back to Home</NavLink>
                 <div data-aos="zoom-in-up" className=" w-1/2 mx-auto  rounded-lg">
                     <div className=" ">
                         <div className="card w-full   shadow-2xl bg-base-100">
@@ -111,7 +130,7 @@ const LogIn = () => {
                                             {showPassword ? <AiFillEye></AiFillEye> : <AiFillEyeInvisible></AiFillEyeInvisible>}
                                         </span>
                                     </div>
-                                </div>                      
+                                </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <LoadCanvasTemplate />

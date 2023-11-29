@@ -40,7 +40,7 @@ const Dashboard = () => {
                     </li>
                 </ul>
             </div>
-            <div>
+            <div className='w-full'>
 
                 <Outlet></Outlet>
             </div>
