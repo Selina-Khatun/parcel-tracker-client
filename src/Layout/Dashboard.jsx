@@ -3,9 +3,10 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { IoHome } from "react-icons/io5";
 import { ImProfile } from "react-icons/im";
 import { TbBrandBooking } from "react-icons/tb";
+import AdminHome from '../pages/Dashboard/Admin/AdminHome';
 const Dashboard = () => {
-    // const location = useLocation();
-    // const noHeaderFooter = location.pathname.includes('login')
+    const location = useLocation();
+    const noAdminHome = location.pathname.includes('/dashboard/bookParcel')|| location.pathname.includes('/dashboard/userParcel')||location.pathname.includes('/dashboard/profile');
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-sky-100">
@@ -19,10 +20,11 @@ const Dashboard = () => {
                         </div>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="/dashboard">
                             <IoHome />
-                            Home</Link>
+                          Admin  Home</Link>
                     </li>
+                    
                     <li>
                         <Link to="/dashboard/bookParcel">
                             <TbBrandBooking />
@@ -38,11 +40,20 @@ const Dashboard = () => {
                             <ImProfile />
                             My Profile </Link>
                     </li>
+                    <div className="divider divider-info"></div>
+                    <li>
+                        <Link to="/">
+                            <IoHome />
+                           Back To Home</Link>
+                    </li>
                 </ul>
             </div>
-            <div className='w-full'>
-
+            <div className='w-full'> 
+           {noAdminHome || <AdminHome></AdminHome>} 
                 <Outlet></Outlet>
+            </div>
+            <div>
+                
             </div>
         </div>
     );

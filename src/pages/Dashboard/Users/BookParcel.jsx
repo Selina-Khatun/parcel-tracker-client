@@ -94,78 +94,71 @@ const BookParcelForm = () => {
                 <h3 className="text-xl font-medium text-gray-900 dark:text-white"> Nice to meet you! Enter your details to Book a Parcel.</h3>
                 <div className='flex lg:flex-row md:flex-col gap-10 flex-col '>
                     <div className='flex-1'>
-                        <div>
-                            <label htmlFor="name" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your name</label>
-                            <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name" required />
+
+                        <div className="w-full">
+                            <label htmlFor="buyerName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buyer Name</label>
+                            <input type="text" name="buyerName" defaultValue={user?.displayName} id="buyerName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="buyerName" required readOnly />
                         </div>
-                        <div>
-                            <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your email</label>
-                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="email" required />
-                        </div>
+
+
 
                         <div className="sm:col-span-2">
-                            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product photo</label>
-                            <input type="url" name="photo" id="photo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=" https://example.com" required />
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter a phone number:</label>
+                            <input type="tel" name="phone" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
                         </div>
 
-                        <div>
-                            <label htmlFor="password" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your password</label>
-                            <div className=' relative'>
-                                <input type={showPassword ? 'text' : 'password'} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                <span className=' absolute top-3 right-2' onClick={() => setShowPassword(!showPassword)}>
-                                    {showPassword ? <AiFillEye></AiFillEye> : <AiFillEyeInvisible></AiFillEyeInvisible>}
-                                </span>
-                            </div>
+                        <div className="w-full">
+                            <label htmlFor="buyerName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parcel Type</label>
+                            <input type="text" name="parcelType" id="parcelType" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="parcelType" required />
                         </div>
-                        <div className="flex items-start">
-                            <div className="flex items-start">
-                                <div className="flex items-center gap-3 h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" name='terms' className="bg-gray-50 border border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
-                                    <label htmlFor="remember" className="font-medium text-gray-900 dark:text-gray-300">  I agree the Terms and Conditions</label>
-                                </div>
 
-                            </div>
-
+                        <div className="w-full">
+                            <label htmlFor="parcelWeight" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parcel Weight</label>
+                            <input type="number" name="parcelWeight" id="parcelWeight" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="parcelWeight" required />
                         </div>
+                        <div className="w-full">
+                            <label htmlFor="receiverName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Receiver's Name</label>
+                            <input type="text" name="receiverName" id="receiverName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="parcelWeight" required />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label htmlFor="receiverPhone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Receiver's Phone Number:</label>
+                            <input type="tel" name="receiverPhone" id="receiverPhone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                        </div>
+
                     </div>
                     <div className='flex-1'>
-                        <div>
-                            <label htmlFor="name" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your name</label>
-                            <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name" required />
+                        <div className="w-full">
+                            <label htmlFor="buyerEmail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buyer email</label>
+                            <input type="email" name="Email" defaultValue={user?.email} id="Email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="buyerEmail" required readOnly />
                         </div>
                         <div>
-                            <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your email</label>
-                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="email" required />
+                            <label htmlFor="deliveryAddress" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Parcel Delivery Address</label>
+                            <input type="text" name="deliveryAddress" id="deliveryAddress" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="deliveryAddress" required />
+                        </div>
+                        <div>
+                            <label htmlFor="date" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Requested Delivery Date</label>
+                            <input type="date" name="date" id="date" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="date" required />
                         </div>
 
                         <div className="sm:col-span-2">
-                            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product photo</label>
-                            <input type="url" name="photo" id="photo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=" https://example.com" required />
+                            <label htmlFor="Latitude" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Delivery Address Latitude</label>
+                            <input type="text" name="Latitude" id="Latitude" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=" Delivery Address Latitude" required />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label htmlFor="Latitude" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Delivery Address Longitude</label>
+                            <input type="text" name="Longitude" id="Longitude" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=" Delivery Address Longitude" required />
                         </div>
 
-                        <div>
-                            <label htmlFor="password" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your password</label>
-                            <div className=' relative'>
-                                <input type={showPassword ? 'text' : 'password'} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                                <span className=' absolute top-3 right-2' onClick={() => setShowPassword(!showPassword)}>
-                                    {showPassword ? <AiFillEye></AiFillEye> : <AiFillEyeInvisible></AiFillEyeInvisible>}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex items-start">
-                            <div className="flex items-start">
-                                <div className="flex items-center gap-3 h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" name='terms' className="bg-gray-50 border border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
-                                    <label htmlFor="remember" className="font-medium text-gray-900 dark:text-gray-300">  I agree the Terms and Conditions</label>
-                                </div>
-
-                            </div>
-
+                        <div className="w-full">
+                            <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                            <input type="number" name="price" id="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" readOnly required />
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="w-1/2 f text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-600">Book a Parcel</button>
 
+                <div className='text-center'>
+                    <button type="submit" className="w-1/2 f text-white bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-600">Book a Parcel</button>
+                </div>
             </form>
 
 

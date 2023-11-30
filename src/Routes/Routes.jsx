@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../pages/Dashboard/Users/UserProfile";
 import UserParcel from "../pages/Dashboard/Users/UserParcel";
 import BookParcel from "../pages/Dashboard/Users/BookParcel";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
     path: 'dashboard',
     element: <PrivateRoute> <Dashboard></Dashboard></PrivateRoute>,
     children: [
+      {
+        path:'adminHome',
+        element:<AdminHome></AdminHome>
+      },
       {
         path: 'profile',
         element:<UserProfile></UserProfile> 
