@@ -10,8 +10,27 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
+
+
+    // const [bookings, setBookings] = useState(); 
+
+    // useEffect(() => {
+    //     // Fetch data here and update state using setUser
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await fetch('https://parcel-tracker-server.vercel.app/bookings');
+    //             const data = await response.json();
+    //             setBookings(data);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -56,6 +75,7 @@ const AuthProvider = ({ children }) => {
         logOut,
         loading,
         updateUserProfile
+     
     }
     return (
         <AuthContext.Provider value={authInfo}>

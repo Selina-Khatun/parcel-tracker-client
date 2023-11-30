@@ -1,115 +1,83 @@
-import React, { useState, useEffect } from 'react';
-// import { getParcels, updateParcelStatus, cancelParcelBooking } from 'path-to-your-api'; // Replace with your API functions
-import ParcelFilter from './ParcelFilter'; 
+import React, { useContext } from 'react';
+import useBooking from '../../../hooks/useBooking';
+import { FaTrashAlt, FaUsers } from 'react-icons/fa';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const UserParcel = () => {
-    const [parcels, setParcels] = useState([]);
-    const [filteredParcels, setFilteredParcels] = useState([]);
-    const [filterStatus, setFilterStatus] = useState('all');
-
-    useEffect(() => {
-        // Fetch user's parcels from the API
-        const fetchParcels = async () => {
-            const userParcels = await getParcels(); // Implement getParcels API function
-            setParcels(userParcels);
-            setFilteredParcels(userParcels);
-        };
-
-        fetchParcels();
-    }, []);
-
-    const handleFilterChange = (status) => {
-        setFilterStatus(status);
-        if (status === 'all') {
-            setFilteredParcels(parcels);
-        } else {
-            const filtered = parcels.filter((parcel) => parcel.bookingStatus === status);
-            setFilteredParcels(filtered);
-        }
-    };
-
-    const handleUpdateParcel = (parcelId) => {
-        // Redirect user to update booking page
-        // Implement your navigation logic
-        console.log(`Redirect to update booking page for parcel ${parcelId}`);
-    };
-
-    const handleCancelParcel = async (parcelId) => {
-        // Confirm cancellation with the user
-        const confirmCancel = window.confirm('Are you sure you want to cancel this parcel booking?');
-
-        if (confirmCancel) {
-            // Update parcel status to 'cancelled'
-            await cancelParcelBooking(parcelId); // Implement cancelParcelBooking API function
-            const updatedParcels = parcels.map((parcel) =>
-                parcel.id === parcelId ? { ...parcel, bookingStatus: 'cancelled' } : parcel
-            );
-            setParcels(updatedParcels);
-            setFilteredParcels(updatedParcels);
-        }
-    };
-
+    const { user } = useContext(AuthContext);
+    const [booking] = useBooking();
+    const userEmail = user?.email;
+    const filteredData = booking.filter(item => item.email === userEmail);
+    
     return (
-        <div className='w-11/12 mx-auto'>
-            <h2 className="text-2xl font-semibold mb-4">My Parcels</h2>
+        <div>
+            <div className="overflow-x-auto">
 
-            {/* Parcel filter component */}
-
-            <ParcelFilter filterStatus={filterStatus} onFilterChange={handleFilterChange} />
-
-            {/* Parcel table */}
-            <table className="min-w-full bg-white border border-gray-300">
-                <thead>
-                    <tr>
-                        <th className="py-2 px-4 border-b">Parcel Type</th>
-                        <th className="py-2 px-4 border-b">Requested Delivery Date</th>
-                        <th className="py-2 px-4 border-b">Approximate Delivery Date</th>
-                        <th className="py-2 px-4 border-b">Booking Date</th>
-                        <th className="py-2 px-4 border-b">Delivery Men ID</th>
-                        <th className="py-2 px-4 border-b">Booking Status</th>
-                        <th className="py-2 px-4 border-b">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredParcels.map((parcel) => (
-                        <tr key={parcel.id}>
-                            <td className="py-2 px-4 border-b">{parcel.parcelType}</td>
-                            <td className="py-2 px-4 border-b">{parcel.requestedDeliveryDate}</td>
-                            <td className="py-2 px-4 border-b">{parcel.approximateDeliveryDate}</td>
-                            <td className="py-2 px-4 border-b">{parcel.bookingDate}</td>
-                            <td className="py-2 px-4 border-b">{parcel.deliveryMenId}</td>
-                            <td className="py-2 px-4 border-b">{parcel.bookingStatus}</td>
-                            <td className="py-2 px-4 border-b space-x-2">
-                                {parcel.bookingStatus === 'pending' && (
-                                    <>
-                                        <button
-                                            className="text-blue-500 hover:underline"
-                                            onClick={() => handleUpdateParcel(parcel.id)}
-                                        >
-                                            Update
-                                        </button>
-                                        <button
-                                            className="text-red-500 hover:underline"
-                                            onClick={() => handleCancelParcel(parcel.id)}
-                                        >
-                                            Cancel
-                                        </button>
-                                    </>
-                                )}
-                                {parcel.bookingStatus === 'delivered' && (
-                                    <button className="text-green-500 hover:underline">Review</button>
-                                )}
-                            </td>
+                {filteredData.length > 0 ? <>
+                    <table className="table table-zebra w-full">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Parcel Type</th>
+                            <th> Requested Delivery Date</th>
+                            <th>Approximate Delivery Date</th>
+                            <th>Booking Date</th>
+                            <th>Delivery Men ID</th>
+                            <th>Booking Status</th>
+                            <th>Action</th>
+                            <th>Action</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {
+                            filteredData?.map((item, index) => <tr key={item._id}>
+                                <th>{index + 1}</th>
+                                <td>{item.parcelType}</td>
+                                <td>{item.date}</td>
+                                <td>{item.date}</td>
+                                <td>{item.date}</td>
+                                <td>{item._id}</td>
+                                <td></td>
+
+
+                                <td>
+                                    {item.role === 'admin' ? 'Admin' : <button
+                                        // onClick={() => handleMakeAdmin(user)}
+                                        className="btn btn-lg bg-orange-500">
+                                        <FaUsers className="text-white 
+                                        text-2xl"></FaUsers>
+                                    </button>}
+
+                                </td>
+                                <td>
+                                    <button
+                                        // onClick={() => handleDeleteUser(user)}
+                                        className="btn btn-ghost btn-lg">
+                                        <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                                    </button>
+                                </td>
+                            </tr>)
+                        }
+
+                    </tbody>
+                </table>
+                
+                </>
+                
+                :
+                
+                <>
+                
+                <div className=' lg:text-5xl pt-10  mt-10 font-extrabold items-center font-sans text-sky-700 text-center  '>You did not booked any parcel </div>
+                </>
+
+                }
+                
+            </div>
         </div>
     );
 };
 
 export default UserParcel;
-
-
-
-

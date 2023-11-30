@@ -1,110 +1,83 @@
-
-
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import './BookParcelForm.css';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+
 
 const BookParcelForm = () => {
-    const { user } = useContext(AuthContext);
-    const [showPassword, setShowPassword] = useState();
-    // const [formData, setFormData] = useState({
-    //     name: user?.displayName || '',
-    //     email: user?.email || '',
-    //     phoneNumber: '',
-    //     parcelType: '',
-    //     parcelWeight: 0,
-    //     receiverName: '',
-    //     receiverPhoneNumber: '',
-    //     deliveryAddress: '',
-    //     requestedDeliveryDate: '',
-    //     deliveryAddressLatitude: '',
-    //     deliveryAddressLongitude: '',
-    //     price: 0,
-    // });
+    const {user}=useContext(AuthContext);
+    // const axiosPublic = useAxiosPublic();
+    const handleBooking = event => {
+        event.preventDefault();
+        const form = event.target;
+        const userName = user?.displayName;
+        const phone = form.phone.value;
+        const receiverPhone = form.receiverPhone.value;
+        const receiverName = form.receiverName.value;
+        const Latitude = form.Latitude.value;
+        const Longitude = form.Longitude.value;
+        const deliveryAddress = form.deliveryAddress.value;
+        const parcelType = form.parcelType.value;
+        const price = form.price.value;
+        const parcelWeight = form.parcelWeight.value
+        const email = user?.email;
+        const date = form.date.value;
+        const bookingItem = {
+            userName: userName,
+            email,
+            phone,
+            parcelType,
+            parcelWeight,
+            receiverName,
+            receiverPhone,
+            deliveryAddress,
+            date,
+            Latitude,
+            Longitude,
+            price: price,
+        };
+        console.log(bookingItem);
+        fetch(`http://localhost:5000/bookings`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookingItem)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    swal({
+                        title: "Good job!",
+                        text: "  successfully booked!",
+                        icon: "success",
+                        button: "Aww yiss!",
 
-    // const handleInputChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    // };
+                    });
+                    form.reset();
+                };
+            });    
 
-    // const handleParcelWeightChange = (e) => {
-    //     const parcelWeight = parseFloat(e.target.value);
-    //     const price = calculatePrice(parcelWeight);
-    //     setFormData((prevData) => ({ ...prevData, parcelWeight, price }));
-    // };
-
-    const calculatePrice = (parcelWeight) => {
-        if (parcelWeight === 1) {
-            return 50;
-        } else if (parcelWeight === 2) {
-            return 100;
-        } else {
-            return 150;
-        }
-    };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // Handle form submission logic here (e.g., send data to server)
-    //     console.log('Form data submitted:', formData);
-    // };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const photo = e.target.photo.value;
-        const password = e.target.password.value;
-        const accepted = e.target.terms.checked;
-        console.log(name, email, photo, password, accepted);
-
-
-        // try {
-        //   // Assuming you have an API endpoint for parcel booking
-        //   const response = await fetch('your-api-endpoint', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(formData),
-        //   });
-
-        //   if (response.ok) {
-        //     // Handle successful form submission (e.g., show a success message)
-        //     console.log('Form submitted successfully');
-        //   } else {
-        //     // Handle error response from the server
-        //     console.error('Form submission failed');
-        //   }
-        // } catch (error) {
-        //   // Handle any network or other errors
-        //   console.error('Error submitting form:', error);
-        // }
-        console.log('Form data submitted:', formData);
-    };
-
-
+    }
     return (
         <div className="book-parcel-form ml-10 ">
             <h2 className='text-3xl'>Book a Parcel</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6 " >
+            <form onSubmit={handleBooking} className="space-y-6 " >
                 <h3 className="text-xl font-medium text-gray-900 dark:text-white"> Nice to meet you! Enter your details to Book a Parcel.</h3>
                 <div className='flex lg:flex-row md:flex-col gap-10 flex-col '>
                     <div className='flex-1'>
 
                         <div className="w-full">
-                            <label htmlFor="buyerName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buyer Name</label>
-                            <input type="text" name="buyerName" defaultValue={user?.displayName} id="buyerName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="buyerName" required readOnly />
+                            <label htmlFor="userName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">user Name</label>
+                            <input type="text" name="userName" defaultValue={user?.displayName} id="userName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="userName" required readOnly />
                         </div>
 
 
 
                         <div className="sm:col-span-2">
                             <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter a phone number:</label>
-                            <input type="tel" name="phone" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                            <input type="tel" name="phone" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123-45-678" pattern="[0-9]{3}[0-9]{2}[0-9]{3}[0-9]{3}" required />
                         </div>
 
                         <div className="w-full">
@@ -122,14 +95,14 @@ const BookParcelForm = () => {
                         </div>
                         <div className="sm:col-span-2">
                             <label htmlFor="receiverPhone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Receiver's Phone Number:</label>
-                            <input type="tel" name="receiverPhone" id="receiverPhone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                            <input type="tel" name="receiverPhone" id="receiverPhone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="12345678" pattern="[0-9]{3}[0-9]{2}[0-9]{3}"  required />
                         </div>
 
                     </div>
                     <div className='flex-1'>
                         <div className="w-full">
-                            <label htmlFor="buyerEmail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buyer email</label>
-                            <input type="email" name="Email" defaultValue={user?.email} id="Email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="buyerEmail" required readOnly />
+                            <label htmlFor="userEmail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User email</label>
+                            <input type="email" name="Email" defaultValue={user?.email} id="Email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="userEmail" required readOnly />
                         </div>
                         <div>
                             <label htmlFor="deliveryAddress" className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Parcel Delivery Address</label>
