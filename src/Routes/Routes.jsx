@@ -10,6 +10,8 @@ import UserProfile from "../pages/Dashboard/Users/UserProfile";
 import UserParcel from "../pages/Dashboard/Users/UserParcel";
 import BookParcel from "../pages/Dashboard/Users/BookParcel";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import AllUsers from "../pages/Dashboard/Users/AllUsers";
+// import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -21,10 +23,6 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>
       },
-      // {
-      //   path: "/dashboard",
-      //   element:<PrivateRoute> <Dashboard></Dashboard></PrivateRoute>
-      // },
       {
         path: "/register",
         element: <Register></Register>
@@ -43,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path:'adminHome',
         element:<AdminHome></AdminHome>
+      },
+      {
+        path:'allUsers',
+        element:<AllUsers></AllUsers>
       },
       {
         path: 'profile',

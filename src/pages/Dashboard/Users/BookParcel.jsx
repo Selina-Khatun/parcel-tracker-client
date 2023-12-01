@@ -36,7 +36,7 @@ const BookParcelForm = () => {
             price: price,
         };
         console.log(bookingItem);
-        fetch(`http://localhost:5000/bookings`, {
+        fetch(`https://parcel-tracker-server.vercel.app/bookings`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -4,15 +4,14 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 import useBooking from '../../../hooks/useBooking';
 
 const AdminHome = () => {
-    // const [review] = useReview();
-    const [user]=useUsers();
-    // const {bookings}=useContext(AuthContext);
-const [booking]=useBooking();
+    const [user] = useUsers();
+    const [booking] = useBooking();
     console.log(booking);
     return (
         <div>
+            
             <h1 className='text-4xl font-extrabold text-center my-10'> Dashboard</h1>
-           <div className=' w-[95%] mx-auto grid lg:grid-cols-3 grid-cols-1 gap-10'>
+            <div className=' w-[95%] mx-auto grid lg:grid-cols-3 grid-cols-1 gap-10'>
                 <div className="card  bg-sky-400 text-white">
                     <div className="card-body items-center text-center">
                         <h2 className="card-title text-4xl font-bold">{user?.length}</h2>

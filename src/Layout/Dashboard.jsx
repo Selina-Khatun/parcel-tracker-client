@@ -4,9 +4,10 @@ import { IoHome } from "react-icons/io5";
 import { ImProfile } from "react-icons/im";
 import { TbBrandBooking } from "react-icons/tb";
 import AdminHome from '../pages/Dashboard/Admin/AdminHome';
+import { FaUser } from 'react-icons/fa';
 const Dashboard = () => {
     const location = useLocation();
-    const noAdminHome = location.pathname.includes('/dashboard/bookParcel')|| location.pathname.includes('/dashboard/userParcel')||location.pathname.includes('/dashboard/profile');
+    const noAdminHome = location.pathname.includes('/dashboard/bookParcel')|| location.pathname.includes('/dashboard/userParcel')||location.pathname.includes('/dashboard/profile')||location.pathname.includes('/dashboard/allUsers');
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-sky-100">
@@ -24,6 +25,12 @@ const Dashboard = () => {
                             <IoHome />
                           Admin  Home</Link>
                     </li>
+                    <li>
+                        <Link to="/dashboard/allUsers">
+                            <FaUser></FaUser>
+                            All Users</Link>
+                    </li>
+
                     
                     <li>
                         <Link to="/dashboard/bookParcel">
